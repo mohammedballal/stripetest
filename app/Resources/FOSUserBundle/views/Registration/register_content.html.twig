@@ -1,0 +1,19 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form class="panel-body wrapper-lg" data-validate="parsley" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+    {{ form_row(form.username, {'attr':{'placeholder':'Username'},'label':false} ) }}
+
+    {{ form_row(form.email, {'attr':{ 'placeholder':'Email'},'label':false} ) }}
+
+    {{ form_row(form.plainPassword) }}
+
+    {{ form_widget(form) }}
+    <div>
+        <input class="btn btn-sm btn-warning form-control" type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+
+    <a href="{{ path('smartone_home_homepage') }}"><i class="fa fa-angle-double-left " style="margin-top: 10px;"> Go Back</i></a>
+    <a href="{{ path('fos_user_security_login') }}" class="pull-right" style="margin-top: 10px;">Login</a>
+</form>
+
+

@@ -1,0 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form class="panel-body wrapper-lg" data-validate="parsley" action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+    </div>
+
+    <a href="{{ path('smartone_home_homepage') }}"><i class="fa fa-angle-double-left " style="margin-top: 10px;"> Go Back</i></a>
+</form>

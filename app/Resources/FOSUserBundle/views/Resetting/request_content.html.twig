@@ -1,0 +1,16 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form class="panel-body wrapper-lg" data-validate="parsley" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div class="form-group">
+
+        <input placeholder="{{ 'resetting.request.username'|trans }}" type="text" class="form-control" id="username" name="username" required="required" />
+        {% if invalid_username is defined %}
+        <span class="help-block m-b-none">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</span>
+        {% endif %}
+    </div>
+    <div>
+        <input class="btn btn-sm btn-warning form-control" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+
+    <a href="{{ path('fos_user_security_login') }}"><i class="fa fa-angle-double-left " style="margin-top: 10px;"> Login</i></a>
+</form>

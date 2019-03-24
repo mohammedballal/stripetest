@@ -1,0 +1,7 @@
+Issues
+
+1. Input not clickable
+ S. Add row div between 12 columns
+
+2. Symfony grid alias duplicating with too many fields only on address
+ S. N/A

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="app js no-touch no-android no-chrome no-firefox no-iemobile no-ie no-ie10 no-ios">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} ORDER IT | {% endblock %}</title>
+    <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/smartonecrm/css/app.v22.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/smartonecrm/css/font.css') }}" type="text/css" cache="false">
+        <link rel="stylesheet" href="{{ asset('bundles/smartonecrm/js/calendar/bootstrap_calendar.css') }}" type="text/css" cache="false">
+
+        <link rel="stylesheet" href="{{ asset('bundles/smartonecrm/css/font.css')}}" type="text/css" cache="false" />
+        <link rel="stylesheet" href="{{ asset('bundles/smartonecrm/js/select2/select2.css')}}" type="text/css" cache="false" />
+        <link rel="stylesheet" href="{{ asset('bundles/smartonecrm/js/select2/theme.css')}}" type="text/css" cache="false" />
+        <link rel="stylesheet" href="{{ asset('bundles/smartonecrm/js/fuelux/fuelux.css')}}" type="text/css" cache="false" />
+        <link rel="stylesheet" href="{{ asset('bundles/smartonecrm/js/datepicker/datepicker.css')}}" type="text/css" cache="false" />
+        <link rel="stylesheet" href="{{ asset('bundles/smartonecrm/js/slider/slider.css')}}" type="text/css" cache="false" />
+        {% if form is defined %}
+        {{ form_stylesheet(form) }}
+    {% endif %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<style>
+    .newgrad {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#494949+0,494949+48,0f0f0f+100 */
+        background: rgb(73,73,73); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(73,73,73,1) 0%, rgba(73,73,73,1) 48%, rgba(15,15,15,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  rgba(73,73,73,1) 0%,rgba(73,73,73,1) 48%,rgba(15,15,15,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  rgba(73,73,73,1) 0%,rgba(73,73,73,1) 48%,rgba(15,15,15,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#494949', endColorstr='#0f0f0f',GradientType=0 ); /* IE6-9 */
+
+    }
+</style>
+<body style="">
+<div class="newgrad" style="display:none;height: 40px; text-align: center; background-color: #3a3a3a; color: #999; padding-top: 10px; font-weight: bold;">
+        Try SMARTONE with a free trial. Set up your own business now. &nbsp;&nbsp;<a class="btn btn-success btn-xs"><b>Add an Organisation</b></a>
+    <a class="btn btn-danger bg-empty btn-xs" style="float: right; margin-right: 10px;" onclick="$(this).parent().fadeOut();"><i class="fa fa-times text-danger"></i> </a>
+</div>
+
+<div class="modal fade" id="modal-form" aria-hidden="false" style="display: none;">
+    <!-- /.modal-dialog --> </div>
+
+<section class="vbox">
+    <header class="bg-dark dk header navbar"><!--navbar-fixed-top-xs-->
+        <div class="navbar-header bg-dark aside-md"> <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen" data-target="#nav"> <i class="fa fa-bars"></i> </a> <a href="#" class="navbar-brand" data-toggle="fullscreen">ORDER IT</a> <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user"> <i class="fa fa-cog"></i> </a> </div>
+
+
+        <ul class="nav navbar-nav navbar-right hidden-xs nav-user">
+
+
+
+        </ul>
+    </header>
+    <section>
+        <section class="hbox stretch">
+            <aside class="bg-light lter aside-md hidden-print" id="nav">
+                <section class="vbox" style="border-right:1px #ccc solid;">
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <header class="header bg-primary lter text-center clearfix"> <div class="btn-group"> <a type="button" class="btn btn-sm btn-dark btn-icon" title="New Business" href="{{ path('business_new') }}"><i class="fa fa-plus"></i></a> <div class="btn-group hidden-nav-xs"> <a href="{{ path('business') }}" type="button" class="btn btn-sm btn-primary"> Switch Business </a>  </div> </div> </header>
+                    {% endif %}
+
+                    <section class="w-f scrollable">
+                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 326px;"><div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333" style="overflow: hidden; width: auto; height: 326px;"> <!-- nav -->
+                                <nav class="nav-primary hidden-xs">
+
+                                </nav>
+                                <!-- / nav --> </div><div class="slimScrollBar" style="background-color: rgb(51, 51, 51); width: 5px; position: absolute; top: -300px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 0px; height: 326px; background-position: initial initial; background-repeat: initial initial;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 0px; background-position: initial initial; background-repeat: initial initial;"></div></div>
+                    </section>
+                    <footer class="footer lt hidden-xs b-t b-light">
+                        <div id="chat" class="dropup">
+                            <section class="dropdown-menu on aside-md m-l-n">
+                                <section class="panel bg-white">
+                                    <header class="panel-heading b-b b-light">Active chats</header>
+                                    <div class="panel-body animated fadeInRight">
+                                        <p class="text-sm">No active chats.</p>
+                                        <p><a href="#" class="btn btn-sm btn-default">Start a chat</a></p>
+                                    </div>
+                                </section>
+                            </section>
+                        </div>
+                        <a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-default btn-icon"> <i class="fa fa-angle-left text"></i> <i class="fa fa-angle-right text-active"></i> </a>
+                        <div class="btn-group hidden-nav-xs">
+                            <button type="button" title="Chats" class="btn btn-icon btn-sm btn-default" data-toggle="dropdown" data-target="#chat"><i class="fa fa-comment-o"></i></button>
+                        </div>
+                    </footer>
+                </section>
+            </aside>
+
+
+            <section id="content">
+
+                <section class="vbox" id="main-back">
+                    <header class="header b-b b-light hidden-print" style="background-color: #FFF;">
+                        {% block topbtns %}
+
+                        {% endblock %}
+
+                        <p>{% block toptext %}{% endblock %}</p>
+
+                    </header>
+
+                    <section class="scrollable padder" id="scrollsection">
+                        <div class="row" style="display: none;">
+                            <div class="m-b-md" style="border-bottom:1px solid #CCC; padding-bottom:5px; {% block headdisplay %} {% endblock %}">
+                                <div class="container">
+
+
+                                    <div style="position: absolute; left: 50px; top: 5px;">
+                                        {%- block profile %}
+                                        <img height="60" src="{{ asset('bundles/smartonecrm/images/avatar_na.png') }}" class="img-circle">
+                                        {%- endblock %}
+                                    </div>
+                                    <h3 class="m-b-none" style="font-weight: bold; font-family: Arial, Helvetica, sans-serif;">
+
+                                        {% block header %} Title {% endblock %}</h3>
+                            {% block subheader %} &nbsp; {% endblock %}
+
+                                    <div class="pull-right" id="headerbuttons" style="margin-top:-20px;">
+                                    {% block header_btns %}
+
+                                    {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            .liactive {
+                                color:  #000 !important;
+                                background: rgba(255,255,255,1);
+                                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(51%, rgba(245,245,245,1)), color-stop(100%, rgba(254,254,254,1)));
+                                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fefefe', GradientType=0 );
+                            }
+                            .m-b-md {
+                                background: rgba(255,255,255,1);
+                                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(51%, rgba(245,245,245,1)), color-stop(100%, rgba(254,254,254,1)));
+                                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 51%, rgba(254,254,254,1) 100%);
+                                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fefefe', GradientType=0 );
+                            }
+                            .m-b-md {
+                                color: rgb(81, 81, 81) !important;
+                            }
+                            .tdhead {
+                                background-color: #f4f4f4;
+                                border-radius:2px;
+                                text-align:right;
+                                font-weight: bold;
+                            }
+                            .table1 td {
+                                margin-bottom:2px !important;
+                                border-bottom:2px solid #fff !important;
+                                border-top:0px !important;
+                            }
+                            td
+                            {
+                                vertical-align: middle !important;
+                            }
+                            .table6 td {
+                                margin-bottom:2px !important;
+                                border-bottom:2px solid #fff !important;
+                                border-top:0px !important;
+                            }
+                            .table5 td {
+                                margin-bottom:2px !important;
+                                border-bottom:2px solid #fff !important;
+                                border-top:0px !important;
+                                padding-top:0px !important;
+                                padding-bottom:0px !important;
+                                vertical-align:middle !important;
+                            }
+                            .table2 td {
+                                margin-bottom:2px !important;
+                                border-top:0px !important;
+                            }
+                            .table1 tr>td:first-child, .table5 tr>td:first-child
+                            {
+                                width:30%;
+                            }
+                            .table2 tr>td:first-child {
+                                width:12.5%;
+                            }
+                            .table1 tr>td:nth-child(2), .table2 tr>td:nth-child(2), .table5 tr>td:nth-child(2)
+                            {
+                                width:70%;
+                            }
+                            .table6 tr>td:first-child {
+                                width:33.33%;
+                            }
+                            .table6 tr>td:nth-child(2)
+                            {
+                                width:66.66%;
+                            }
+                            .rrdd:hover {
+                                background-color:#F8F8F8;
+                                cursor:pointer;
+                            }
+                            .checkbox:hover {
+                                background-color:#F8F8F8;
+                            }
+                            #loadingdiv {
+                                position: fixed;
+                                background-color: #999;
+                                top: 50%;
+                                left: 50%;
+                                margin-top: -100px;
+                                margin-left: -250px;
+                                border: 1px solid #000;
+                                margin-left: auto;
+                                margin-right: auto;
+                                display: none;
+                                height: 50px !important;
+                                width: 100px;
+                            }
+                            .ajax-loader {
+                                color: #fff;
+                                position: relative;
+                                top: 25%;
+                                left: 40%;
+                            }
+                        </style>
+                        <div id="loadingdiv" style="z-index: 999999;"><span class="ajax-loader"><i class="fa  fa-2x fa-spinner fa-spin"></i></span>
+                             </div>
+                        <div class="alert alert-success" id="msgdiv" style="display:none;">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <i class="fa fa-ban-circle"></i> <strong>Done!</strong> Changes saved. </div>
+                        <div id="contentdiv" style="margin-top: 20px;">
+
+                            {% for type, flashMessages in app.session.flashbag.all() %}
+                                {% for flashMessage in flashMessages %}
+                                    {% if type == "warning" %}
+                                        {%  set ico = "warning" %}
+                                    {% elseif type == "danger" %}
+                                        {% set ico = "success" %}
+                                    {% else %}
+                                {% set ico = "check" %}
+                                    {% endif %}
+
+                                    <div id="errordiv" class="row animated fadeInDownBig" style="margin-top:20px; margin-bottom:0px;">
+                                        <div class="col-md-12 col-xs-12">
+                                                <section class="panel bg-{{ type }} box-shadow1" style="box-shadow: 2px 2px 2px #888888;">
+                                                    <header class="panel-heading bg-{{ type }} lt no-border">
+                                                        <div class="clearfix">
+                                                            <div class="clear">
+                                                                <span class="thumb pull-right m-l" style="padding-top:10px;"><i class="fa fa-{{ ico }} fa-2x"></i></span>
+                                                                <div class="h5 m-t-xs m-b-xs text-white" style="padding-top: 7px;">{{ flashMessage|trans }}</div>
+                                                                </div>
+                                                        </div>
+                                                    </header>
+                                                </section>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+
+                            {% block body %}
+
+
+                            {% endblock %}
+                    </section>
+                </section>
+
+                <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a> </section>
+
+            <aside class="bg-light lter b-l aside-md hide" id="notes">
+                <div class="wrapper">Notification</div>
+            </aside>
+        </section>
+    </section>
+</section>
+{% block javascripts %}
+    <script src="{{ asset('bundles/smartonecrm/js/app.v2.js') }}"></script> <!-- Bootstrap --> <!-- App -->
+    <script src="{{ asset('bundles/smartonecrm/js/parsley/parsley.min.js') }}"></script> <!-- Bootstrap --> <!-- App -->
+
+
+    <script src="{{ asset('bundles/smartonecrm/js/datepicker/bootstrap-datepicker.js')}}" cache="false"></script>
+    <script src="{{ asset('bundles/smartonecrm/js/slider/bootstrap-slider.js')}}" cache="false"></script>
+    <script src="{{ asset('bundles/smartonecrm/js/file-input/bootstrap-filestyle.min.js')}}" cache="false"></script>
+    <script src="{{ asset('bundles/smartonecrm/js/libs/moment.min.js')}}" cache="false"></script>
+    <script src="{{ asset('bundles/smartonecrm/js/combodate/combodate.js')}}" cache="false"></script>
+    <script src="{{ asset('bundles/smartonecrm/js/select2/select2.min.js')}}" cache="false"></script>
+    <script src="{{ asset('bundles/smartonecrm/js/wysiwyg/jquery.hotkeys.js')}}" cache="false"></script>
+    <script src="{{ asset('bundles/smartonecrm/js/wysiwyg/bootstrap-wysiwyg.js')}}" cache="false"></script>
+{% if form is defined %}
+    {{ form_javascript(form) }}
+{% endif %}
+    <script>
+        $(function(){
+            $('.select2').select2();
+        })
+
+    </script>
+{% endblock %}
+
+{% block javascript_page %}
+{% endblock %}
+
+{% block jsroute %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+
+    <script>
+
+            $('a').on('click', function() {
+
+                var attr = $(this).attr('data-href');
+                var pageurl = $(this).attr('href');
+
+// For some browsers, `attr` is undefined; for others,
+// `attr` is false.  Check for both.
+                if (typeof attr !== typeof undefined && attr !== false) {
+                    $('#loadingdiv').fadeIn();
+                    event.preventDefault();
+                    $.ajax({
+                        url: pageurl,
+                    }).done(function( data ) {
+                        $('#contentdiv').html(data);
+                        $('#loadingdiv').fadeOut(800);
+                    });
+
+                    if(pageurl!=window.location){
+                        window.history.pushState({path:pageurl},'',pageurl);
+                    }
+//stop refreshing to the page given in
+                    return false;
+                }
+
+
+            });
+
+
+    </script>
+{% endblock %}
+</body></html>

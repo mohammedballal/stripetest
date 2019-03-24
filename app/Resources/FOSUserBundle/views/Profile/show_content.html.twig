@@ -1,0 +1,15 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row contact_details_div" style="">
+    <div class="col-md-6">
+        <table class="table table-condensed table1"><tbody><tr>
+                <td class="tdhead">{{  'profile.show.username'|trans }}:</td>
+                <td class="datao"> {{ user.username }}</td>
+            </tr>
+            <tr>
+                <td class="tdhead">{{ 'profile.show.email'|trans }}:</td>
+                <td class="datao"> {{ user.email }}</td>
+            </tr>
+    </div>
+
+</div>

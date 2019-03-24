@@ -1,0 +1,30 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} Login {% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+{% if error %}
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<form class="panel-body wrapper-lg" data-validate="parsley" action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+    <div class="form-group">
+    <input class="form-control" placeholder="{{ 'security.login.username'|trans }}" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    </div>
+    <div class="form-group">
+    <input class="form-control" placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required" />
+    </div>
+    <div class="form-group">
+    <input class="" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    </div>
+
+    <input class="btn btn-sm btn-warning form-control" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+    <a href="{{ path('smartone_home_homepage') }}"><i class="fa fa-angle-double-left " style="margin-top: 10px;"> Go Back</i></a>
+    <a href="{{ path('fos_user_resetting_request') }}" class="pull-right" style="margin-top: 10px;">Forgot your password?</a>
+</form>
+{% endblock fos_user_content %}

@@ -1,0 +1,39 @@
+{% block body %}
+{% endblock %}
+
+{% block javascript_page %}
+{% endblock %}
+
+{% block jsroute %}
+    <script>
+
+        $('a').on('click', function() {
+
+            var attr = $(this).attr('data-href');
+            var pageurl = $(this).attr('href');
+
+// For some browsers, `attr` is undefined; for others,
+// `attr` is false.  Check for both.
+            if (typeof attr !== typeof undefined && attr !== false) {
+                $('#loadingdiv').fadeIn();
+                event.preventDefault();
+                $.ajax({
+                    url: pageurl,
+                }).done(function( data ) {
+                    $('#contentdiv').html(data);
+                    $('#loadingdiv').fadeOut(800);
+                });
+
+                if(pageurl!=window.location){
+                    window.history.pushState({path:pageurl},'',pageurl);
+                }
+//stop refreshing to the page given in
+                return false;
+            }
+
+
+        });
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    {{ parent() }} My Profile | Edit
+{% endblock %}
+{% block body %}
+{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock body %}

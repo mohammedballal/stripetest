@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %} SmartOne | {% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/smartoneformdesigner/css/app.v22.css') }}" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+		{% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bundles/smartoneformdesigner/js/app.v2.js') }}"></script> <!-- Bootstrap --> <!-- App -->
+        {% endblock %}
+    </body>
+</html>
